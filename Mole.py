@@ -35,7 +35,8 @@ tile_images = {
     'wall': load_image('brick.png'),
     'empty': load_image('stone.png'),
     'good_empty': load_image('stone (1).png'),
-    'move_block': load_image('move_block.jpg')
+    'move_block': load_image('move_block.jpg'),
+    'good_block': load_image('good_block.png')
 }
 
 player_image = load_image('mole.png', -1)
@@ -229,14 +230,17 @@ def move(person, movement):
                                                                                         level_map[y - 2][x] == "g"):
             if level_map[y - 1][x] == "gb":
                 Tile('good_empty', x, y - 1)
+                level_map[y - 1][x] = "g"
             else:
                 Tile('empty', x, y - 1)
-            level_map[y - 1][x] = "."
+                level_map[y - 1][x] = "."
+
             if level_map[y - 2][x] == "g":
                 level_map[y - 2][x] = "gb"
+                Tile('good_block', x, y - 2)
             else:
                 level_map[y - 2][x] = "b"
-            Tile('move_block', x, y - 2)
+                Tile('move_block', x, y - 2)
             person.move(x, y - 1)
 
     elif movement == "down":
@@ -246,14 +250,17 @@ def move(person, movement):
                 (level_map[y + 2][x] == "." or level_map[y + 2][x] == "g"):
             if level_map[y + 1][x] == "gb":
                 Tile('good_empty', x, y + 1)
+                level_map[y + 1][x] = "g"
             else:
                 Tile('empty', x, y + 1)
-            level_map[y + 1][x] = "."
+                level_map[y + 1][x] = "."
+
             if level_map[y + 2][x] == "g":
                 level_map[y + 2][x] = "gb"
+                Tile('good_block', x, y + 2)
             else:
                 level_map[y + 2][x] = "b"
-            Tile('move_block', x, y + 2)
+                Tile('move_block', x, y + 2)
             person.move(x, y + 1)
 
     elif movement == "left":
@@ -263,14 +270,17 @@ def move(person, movement):
                                                                                         level_map[y][x - 2] == "g"):
             if level_map[y][x - 1] == "gb":
                 Tile('good_empty', x - 1, y)
+                level_map[y][x - 1] = "g"
             else:
                 Tile('empty', x - 1, y)
-            level_map[y][x - 1] = "."
+                level_map[y][x - 1] = "."
+
             if level_map[y][x - 2] == "g":
                 level_map[y][x - 2] = "gb"
+                Tile('good_block', x - 2, y)
             else:
                 level_map[y][x - 2] = "b"
-            Tile('move_block', x - 2, y)
+                Tile('move_block', x - 2, y)
             person.move(x - 1, y)
     elif movement == "right":
         if x < max_x - 1 and (level_map[y][x + 1] == "." or level_map[y][x + 1] == "g"):
@@ -279,14 +289,17 @@ def move(person, movement):
                 (level_map[y][x + 2] == "." or level_map[y][x + 2] == "g"):
             if level_map[y][x + 1] == "gb":
                 Tile('good_empty', x + 1, y)
+                level_map[y][x + 1] = "g"
             else:
                 Tile('empty', x + 1, y)
-            level_map[y][x + 1] = "."
+                level_map[y][x + 1] = "."
+
             if level_map[y][x + 2] == "g":
                 level_map[y][x + 2] = "gb"
+                Tile('good_block', x + 2, y)
             else:
                 level_map[y][x + 2] = "b"
-            Tile('move_block', x + 2, y)
+                Tile('move_block', x + 2, y)
             person.move(x + 1, y)
 
 
