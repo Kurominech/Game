@@ -36,7 +36,7 @@ tile_images = {
     'empty': load_image('stone.png'),
     'good_empty': load_image('stone (1).png'),
     'move_block': load_image('move_block.jpg'),
-    'good_block': load_image('good_block.png')
+    'good_block': load_image('good_block.png'),
 }
 
 player_image = load_image('mole.png', -1)
@@ -304,38 +304,136 @@ def move(person, movement):
 
 
 start_screen()
-camera = Camera()
-level_map = load_level("map.map")
-hero, max_x, max_y = generate_level(level_map)
-camera.update(hero)
-motion = None
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                motion = 'UP'
-            elif event.key == pygame.K_DOWN:
-                motion = 'DOWN'
-            elif event.key == pygame.K_LEFT:
-                motion = 'LEFT'
-            elif event.key == pygame.K_RIGHT:
-                motion = 'RIGHT'
-        elif event.type == pygame.KEYUP:
-            if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN]:
-                motion = 'STOP'
-    screen.fill(pygame.Color("black"))
-    sprite_group.draw(screen)
-    hero_group.draw(screen)
-    if motion == 'LEFT':
-        move(hero, "left")
-    elif motion == 'RIGHT':
-        move(hero, "right")
-    elif motion == 'UP':
-        move(hero, "up")
-    elif motion == 'DOWN':
-        move(hero, "down")
-    clock.tick(FPS)
-    pygame.display.flip()
+
+def lvl_1():
+    global level_map, camera, hero, max_x, max_y, motion, green
+    camera = Camera()
+    level_map = load_level("map.map")
+    hero, max_x, max_y = generate_level(level_map)
+    camera.update(hero)
+    motion = None
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    motion = 'UP'
+                elif event.key == pygame.K_DOWN:
+                    motion = 'DOWN'
+                elif event.key == pygame.K_LEFT:
+                    motion = 'LEFT'
+                elif event.key == pygame.K_RIGHT:
+                    motion = 'RIGHT'
+            elif event.type == pygame.KEYUP:
+                if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN]:
+                    motion = 'STOP'
+        if motion == 'LEFT':
+            move(hero, "left")
+        elif motion == 'RIGHT':
+            move(hero, "right")
+        elif motion == 'UP':
+            move(hero, "up")
+        elif motion == 'DOWN':
+            move(hero, "down")
+        if level_map[2][19] == "gb" and level_map[3][19] == "gb" and level_map[4][19] == "gb" and level_map[8][19] == "gb" and level_map[9][19] == "gb" and level_map[10][19] == "gb":
+            sprite_group.empty()
+            hero_group.empty()
+            lvl_2()
+            return
+        else:
+            screen.fill(pygame.Color("black"))
+            sprite_group.draw(screen)
+            hero_group.draw(screen)
+        clock.tick(FPS)
+        pygame.display.flip()
+
+def lvl_2():
+    global level_map, camera, hero, max_x, max_y, motion, green
+    camera = Camera()
+    level_map = load_level("map1.map")
+    hero, max_x, max_y = generate_level(level_map)
+    camera.update(hero)
+    motion = None
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    motion = 'UP'
+                elif event.key == pygame.K_DOWN:
+                    motion = 'DOWN'
+                elif event.key == pygame.K_LEFT:
+                    motion = 'LEFT'
+                elif event.key == pygame.K_RIGHT:
+                    motion = 'RIGHT'
+            elif event.type == pygame.KEYUP:
+                if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN]:
+                    motion = 'STOP'
+        if motion == 'LEFT':
+            move(hero, "left")
+        elif motion == 'RIGHT':
+            move(hero, "right")
+        elif motion == 'UP':
+            move(hero, "up")
+        elif motion == 'DOWN':
+            move(hero, "down")
+        if level_map[4][10] == "gb" and level_map[4][11] == "gb" and level_map[4][12] == "gb" and level_map[4][13] == "gb" and level_map[4][14] == "gb" and level_map[4][15] == "gb":
+            sprite_group.empty()
+            hero_group.empty()
+            lvl_3()
+            return
+
+        else:
+            screen.fill(pygame.Color("black"))
+            sprite_group.draw(screen)
+            hero_group.draw(screen)
+        clock.tick(FPS)
+        pygame.display.flip()
+
+
+def lvl_3():
+    global level_map, camera, hero, max_x, max_y, motion, green
+    camera = Camera()
+    level_map = load_level("map2.map")
+    hero, max_x, max_y = generate_level(level_map)
+    camera.update(hero)
+    motion = None
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    motion = 'UP'
+                elif event.key == pygame.K_DOWN:
+                    motion = 'DOWN'
+                elif event.key == pygame.K_LEFT:
+                    motion = 'LEFT'
+                elif event.key == pygame.K_RIGHT:
+                    motion = 'RIGHT'
+            elif event.type == pygame.KEYUP:
+                if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN]:
+                    motion = 'STOP'
+        if motion == 'LEFT':
+            move(hero, "left")
+        elif motion == 'RIGHT':
+            move(hero, "right")
+        elif motion == 'UP':
+            move(hero, "up")
+        elif motion == 'DOWN':
+            move(hero, "down")
+
+        screen.fill(pygame.Color("black"))
+        sprite_group.draw(screen)
+        hero_group.draw(screen)
+        clock.tick(FPS)
+        pygame.display.flip()
+
+lvl_1()
+
 pygame.quit()
