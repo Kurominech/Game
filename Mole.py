@@ -36,7 +36,7 @@ tile_images = {
     'empty': load_image('stone.png'),
     'good_empty': load_image('stone (1).png'),
     'move_block': load_image('move_block.jpg'),
-    'good_block': load_image('good_block.png'),
+    'good_block': load_image('good_block.png')
 }
 
 player_image = load_image('mole.png', -1)
